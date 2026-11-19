@@ -1,0 +1,35 @@
+name: Infrastructure & Application CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  terraform-security-audit:
+    name: Terraform Validate & Checkov Scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.9.8
+
+      - name: Terraform Format & Validate
+        working-directory: terraform/environments/prod-blueprint
+        run: |
+          terraform fmt -check -recursive ../../
+          terraform init -backend=false
+          terraform validate
+
+      - name: Run Checkov IaC Security Scan
+        uses: bridgecrewio/checkov-action@v12
+        with:
+          directory: terraform/
+          framework: terraform
+          soft_fail: true
+
