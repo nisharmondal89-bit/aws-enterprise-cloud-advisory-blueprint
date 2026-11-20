@@ -1,0 +1,9 @@
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.localstack/
