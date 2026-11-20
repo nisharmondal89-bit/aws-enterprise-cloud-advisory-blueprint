@@ -20,7 +20,7 @@ This repository simulates a complete end-to-end **Enterprise Cloud Advisory & De
 
 ---
 
-## Quickstart: Clone & Run Locally ($0 AWS Cost)
+## Quickstart: Clone & Run Locally
 
 Anyone cloning this repository can validate the Terraform infrastructure and run the Python microservice locally using **Docker** and **LocalStack**:
 
